@@ -24,11 +24,18 @@ func (dog) bark() {
 
 但go 的receiver 運作的方式其實跟cpp完全不同
 
-但是在cpp裡面，this永遠是一個指標指向了當前物件
+在cpp裡面，this永遠是一個指標指向了當前物件
 go這邊比較tricky，雖然妳看起來是 a.add()這種調用
-但其實go會變成add(a)這樣的方式，那既然是這樣的調用他當然就可以選擇要傳指標還是value了
+但其實go會變成add(a)這樣的方式，其實就跟Ｃ語言一模一樣
+那既然是這樣的調用他當然就可以選擇要傳指標還是value了
 recevier只是做了一個型別檢查的功能，來達到讓方法聚合的功能
-
+```Ｃ
+typedef struct {
+    int *test
+}dog;
+void bark(dog *dog){
+}
+```
 ```go
 func (d dog) bark() {
     fmt.Println("bark")
